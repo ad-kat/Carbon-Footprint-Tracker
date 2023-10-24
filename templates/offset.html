@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Carbon Footprint Tracker Dashboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+
+  <style>
+        body{
+            background-color:#061A40;
+            color: #B9D6F2;
+        }
+      .topbar {
+          display:flex;
+          justify-content: space-between;
+          align-items: center;
+          background-color: #061A40;
+          height: 60px;
+          padding: 0 30px;
+      }
+
+      .topbar a {
+          text-decoration: none;
+          color: #B9D6F2;
+          cursor: pointer;
+      }
+
+              .material-symbols-outlined {
+                   font-variation-settings:
+                                           'FILL' 0,
+                                           'wght' 400,
+                                           'GRAD' 0,
+                                           'opsz' 24
+                                           }
+
+        /* Basic styling for the sidebar */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: #003559;
+            transition: 0.3s;
+            padding-top: 60px;
+        }
+
+        .sidebar a {
+            padding: 15px;
+            text-align: center;
+            text-decoration: none;
+            font-size: 20px;
+            color: #B9D6F2;
+            display: block;
+            border-bottom: 20px white;
+        }
+    .special{
+      background-color: #061A40;
+      border-radius: 15px;
+          }
+
+        .sidebar a:hover {
+            background-color: #006DAA;
+          border-radius: 15px;
+        }
+
+        .content {
+            margin-left: 0px;
+            padding: 20px;
+          text-align: center;
+
+        }
+    </style>
+</head>
+<body>
+  <div class="topbar">
+      <a href="javascript:void(0)" style="font-size:30px;" onclick="openNav()">&#9776; </a>
+    <h2 style="flex-grow: 0.009;font-size: 40px; align-content: center">DASHBOARD</h2>
+      <a href="#"style="font-size: 40px;"><span class="material-symbols-outlined">account_circle</span></a>
+  </div>
+    <div class="sidebar" id="mySidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776; Activities</a>
+        <a href="{{ url_for('basic_info') }}" class="border-bottom" ><span style="font-size:30px; align-content: left;" class="material-symbols-outlined">face</span>  Your basic Info</a>
+ <a href="{{ url_for('today') }}" class="border-bottom" ><span class="material-symbols-outlined">add_task</span> Enter what you did Today!</a>
+      <a href="{{ url_for('points') }}" class="border-bottom" ><span class="material-symbols-outlined">public</span> View Carbon Points this week!!</a>
+      <a href="{{ url_for('shop') }}" class="border-bottom" ><span class="material-symbols-outlined">garden_cart</span> Did you shop today? Enter expenditure!</a>
+       <div class="special"><a href="{{ url_for('offset') }}" class="border-bottom" ><span class="material-symbols-outlined">potted_plant</span> Any offsets you made this week to save the environment? Enter here...</a></div>
+    </div>
+
+    <div class="content">
+
+        <p>offset(anything additional minus points you did today)</p>
+      <br>
+      <br>
+
+
+
+    </div>
+
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.left = "0";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.left = "-250px";
+        }
+    </script>
+</body>
+</html>
+

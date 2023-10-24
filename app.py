@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 
 RECOMMENDATIONS = [
     {
@@ -29,6 +29,31 @@ RECOMMENDATIONS = [
 @app.route("/")
 def hello_world():
   return render_template('dashboard.html', recs=RECOMMENDATIONS)
+
+
+@app.route('/basicinfo', methods=['GET'])
+def basic_info():
+  return render_template('basicinfo.html')
+
+
+@app.route('/offset', methods=['GET'])
+def offset():
+  return render_template('offset.html')
+
+
+@app.route('/points', methods=['GET'])
+def points():
+  return render_template('points.html')
+
+
+@app.route('/shop', methods=['GET'])
+def shop():
+  return render_template('shop.html')
+
+
+@app.route('/today', methods=['GET'])
+def today():
+  return render_template('today.html')
 
 
 if __name__ == "__main__":

@@ -78,11 +78,11 @@
   </div>
     <div class="sidebar" id="mySidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&#9776; Activities</a>
-        <a href="templates/basic-info.html" class="border-bottom" ><span style="font-size:30px; align-content: left;" class="material-symbols-outlined">face</span>  Your basic Info</a>
-        <a href="templates/today.html" class="border-bottom" ><span class="material-symbols-outlined">add_task</span> Enter what you did Today!</a>
-        <a href="templates/points.html" class="border-bottom" ><span class="material-symbols-outlined">public</span> View Carbon Points this week!!</a>
-        <a href="templates/shop.html" class="border-bottom" ><span class="material-symbols-outlined">garden_cart</span> Did you shop today? Enter expenditure!</a>
-        <a href="templates/offset.html" class="border-bottom" ><span class="material-symbols-outlined">potted_plant</span> Any offsets you made this week to save the environment? Enter here...</a>
+        <a href="{{ url_for('basic_info') }}" class="border-bottom" ><span style="font-size:30px; align-content: left;" class="material-symbols-outlined">face</span>  Your basic Info</a>
+        <a href="{{ url_for('today') }}" class="border-bottom" ><span class="material-symbols-outlined">add_task</span> Enter what you did Today!</a>
+        <a href="{{ url_for('points') }}" class="border-bottom" ><span class="material-symbols-outlined">public</span> View Carbon Points this week!!</a>
+        <a href="{{ url_for('shop') }}" class="border-bottom" ><span class="material-symbols-outlined">garden_cart</span> Did you shop today? Enter expenditure!</a>
+        <a href="{{ url_for('offset') }}" class="border-bottom" ><span class="material-symbols-outlined">potted_plant</span> Any offsets you made this week to save the environment? Enter here...</a>
     </div>
 
     <div class="content">
