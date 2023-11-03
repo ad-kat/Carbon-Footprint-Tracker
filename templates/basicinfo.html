@@ -90,15 +90,27 @@
       <a href="{{ url_for('offset') }}" class="border-bottom" ><span class="material-symbols-outlined">potted_plant</span> Any offsets you made this week to save the environment? Enter here...</a>
     </div>
 
-    <div class="content">
+  <div class="content">
 
-        <p>Basic info(fixed)</p>
-      <br>
-      <br>
+      <p>Your BASIC INFO:</p>
+    <br>
+    <br>
+    
+    <div>
+      {% for rec in basics %}
+      <div>User Id: {{rec[0]}}</div>
+      <div>Username: {{rec[1]}}</div>
+      <div>Identity: {{rec[2]}}</div>
+      <div>Email Id: {{rec[3]}}</div>
+      <div>Latest Carbon points: {{rec[4]}}</div>
+      <div>Last modified on:{{rec[5]}}</div>
       
-
-
+      <br>
+      {% endfor %}
     </div>
+
+
+  </div>
 
     <script>
         function openNav() {

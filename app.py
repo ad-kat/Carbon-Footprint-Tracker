@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request
-import sqlite3
-
-
+from flask import Flask, render_template
+from database import load_basicinfo_from_db
 
 app = Flask(__name__, template_folder="templates")
 
@@ -29,6 +27,10 @@ RECOMMENDATIONS = [
 ]
 
 
+
+
+
+
 @app.route("/")
 def hello_world():
   return render_template('dashboard.html', recs=RECOMMENDATIONS)
@@ -36,7 +38,8 @@ def hello_world():
 
 @app.route('/basicinfo', methods=['GET'])
 def basic_info():
-  return render_template('basicinfo.html')
+  info = load_basicinfo_from_db()
+  return render_template('basicinfo.html', basics=info)
 
 
 @app.route('/offset', methods=['GET'])
