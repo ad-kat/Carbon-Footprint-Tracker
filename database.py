@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, text
 
-db_string = "mysql+pymysql://xp6jyx8iac4bhob3z4hy:pscale_pw_TlhkYIqY7wQjUOo65vuQgvMblVoYzR4F7SODeGnA8WF@aws.connect.psdb.cloud/carbon-footprint?charset=utf8mb4"
+db_string = "mysql+pymysql://3ukz4qcmgyrybc678dx4:pscale_pw_swFdDVjKgtZ12HDGikyk3qNJO8tTEJkknjSyx1i1MnO@aws.connect.psdb.cloud/carbon-footprint?charset=utf8mb4"
 engine = create_engine(db_string,
                        connect_args={"ssl": {
                            "ssl_ca": "/etc/ssl/cert.pem"
@@ -9,7 +9,7 @@ engine = create_engine(db_string,
 
 def load_basicinfo_from_db():
   with engine.connect() as conn:
-    query = "select users.user_id,username,fullname,email_id,carbon_emission,measurement_date from users join carbon_footprint where users.user_id=1 and carbon_footprint.user_id=1"
+    query = "select users.user_id,username,fullname,email_id,carbon_emission,measurement_date,total_members,house_size,waste_production from users, carbon_footprint, household_data where users.user_id=1 and carbon_footprint.user_id=1 and household_data.user_id=1"
     result = conn.execute(text(query))
 
     info = []

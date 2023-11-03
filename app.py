@@ -52,9 +52,6 @@ def points():
   return render_template('points.html')
 
 
-@app.route('/shop', methods=['GET'])
-def shop():
-  return render_template('shop.html')
 
 
 @app.route('/today', methods=['GET'])

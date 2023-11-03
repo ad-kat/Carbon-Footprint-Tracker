@@ -86,7 +86,7 @@
         <div class="special"><a href="{{ url_for('basic_info') }}" class="border-bottom" ><span style="font-size:30px; align-content: left;" class="material-symbols-outlined">face</span>  Your basic Info</a></div>
       <a href="{{ url_for('today') }}" class="border-bottom" ><span class="material-symbols-outlined">add_task</span> Enter what you did Today!</a>
       <a href="{{ url_for('points') }}" class="border-bottom" ><span class="material-symbols-outlined">public</span> View Carbon Points this week!!</a>
-      <a href="{{ url_for('shop') }}" class="border-bottom" ><span class="material-symbols-outlined">garden_cart</span> Did you shop today? Enter expenditure!</a>
+      
       <a href="{{ url_for('offset') }}" class="border-bottom" ><span class="material-symbols-outlined">potted_plant</span> Any offsets you made this week to save the environment? Enter here...</a>
     </div>
 
@@ -103,7 +103,10 @@
       <div>Identity: {{rec[2]}}</div>
       <div>Email Id: {{rec[3]}}</div>
       <div>Latest Carbon points: {{rec[4]}}</div>
-      <div>Last modified on:{{rec[5]}}</div>
+      <div>Last modified on: {{rec[5]}}</div>
+      <div>Total members in your house: {{rec[6]}}</div>
+      <div>Number of bedrooms in your house: {{rec[7]}}</div>
+      <div>Waste production right now: {{rec[8]}}</div>
       
       <br>
       {% endfor %}

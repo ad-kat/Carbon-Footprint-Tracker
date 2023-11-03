@@ -8,6 +8,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
 
+  <script>
+      function showHideTextbox(selectBox, textboxId) {
+          var selectedOption = selectBox.options[selectBox.selectedIndex].value;
+          var textbox = document.getElementById(textboxId);
+
+          if (selectedOption === 'yes') {
+              textbox.style.display = 'block';
+          } else {
+              textbox.style.display = 'none';
+              textbox.value = ''; // Clear the value if not 'yes'
+          }
+      }
+  </script>
+
+
   <style>
         body{
             background-color:#061A40;
@@ -86,13 +101,51 @@
         <a href="{{ url_for('basic_info') }}" class="border-bottom" ><span style="font-size:30px; align-content: left;" class="material-symbols-outlined">face</span>  Your basic Info</a>
   <div class="special"><a href="{{ url_for('today') }}" class="border-bottom" ><span class="material-symbols-outlined">add_task</span> Enter what you did Today!</a></div>
       <a href="{{ url_for('points') }}" class="border-bottom" ><span class="material-symbols-outlined">public</span> View Carbon Points this week!!</a>
-      <a href="{{ url_for('shop') }}" class="border-bottom" ><span class="material-symbols-outlined">garden_cart</span> Did you shop today? Enter expenditure!</a>
       <a href="{{ url_for('offset') }}" class="border-bottom" ><span class="material-symbols-outlined">potted_plant</span> Any offsets you made this week to save the environment? Enter here...</a>
     </div>
 
     <div class="content">
 
-        <p>daily activities plus</p>
+        <h2>Enter your itenary:</h2>
+      <div class="container">
+          <form>
+              <label for="waste">Throw waste?</label><br>
+              <select id="waste" style="background-color: #B9D6F2" onchange="showHideTextbox(this, 'wasteBins')">
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+              </select>
+              <input type="text" id="wasteBins" style="display: none; align: center;background-color: #B9D6F2" placeholder="How many bins?"><br><br>
+
+              <label for="car">Drive a car?</label><br>
+              <select id="car" style="background-color: #B9D6F2" onchange="showHideTextbox(this, 'carKms')">
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+              </select>
+              <input type="text" id="carKms" style="display: none;background-color: #B9D6F2" placeholder="How many kms roughly?"><br><br>
+
+              <label for="meal">Type of meal?</label><br>
+              <select id="meal" style="background-color: #B9D6F2">
+                  <option value="veg">Veg</option>
+                  <option value="non-veg">Non-Veg</option>
+              </select><br><br>
+
+              <label for="laundry">Laundry?</label><br>
+              <select id="laundry" style="background-color: #B9D6F2">
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+              </select><br><br>
+
+              <label for="utensils">Utensils?</label><br>
+              <select id="utensils" style="background-color: #B9D6F2">
+                  <option value="no">No</option>
+                  <option value="yes">Yes</option>
+              </select><br><br>
+
+              <button type="submit" style="background-color: #B9D6F2">Upload</button>
+          </form>
+
+      </div>
+      
       <br>
       <br>
 
