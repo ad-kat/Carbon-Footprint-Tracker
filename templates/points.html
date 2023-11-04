@@ -130,7 +130,46 @@
         </tr> 
         <br>
         {% endfor %}
+
+        <p>total carbon points:57.5</p>
       </table>
+
+      <table border="1" >
+
+        <tr bgcolor=#003559>
+          <th> Date: </th>
+          <th> Walked to work </th>
+
+          <th> Carpooled </th>
+          
+          <th> Cycled to work </th>
+          <th> Planted Trees </th>
+          <th> Used Public transport </th>
+          
+          <th> Recycled plastic </th>
+          <th> Participation in community cleanup </th>
+        </tr>
+        {% for rec in offsets %}
+        <tr bgcolor=#B9D6F2>
+          <td>{{rec[8]}}</td>
+          
+
+          <td>{{rec[1]}}</td>
+          <td>{{rec[2]}}</td>
+          <td>{{rec[3]}}</td>
+          <td>{{rec[4]}}</td>
+          <td>{{rec[5]}}</td>
+          <td>{{rec[6]}}</td>
+          <td>{{rec[7]}}</td>
+        </tr> 
+        <br>
+        {% endfor %}
+
+        
+      </table>
+
+
+      
       <br>
       <br>
 
@@ -149,4 +188,3 @@
     </script>
 </body>
 </html>
-

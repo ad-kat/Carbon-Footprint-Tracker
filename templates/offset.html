@@ -86,7 +86,7 @@
 <body>
   <div class="topbar">
       <a href="javascript:void(0)" style="font-size:30px;" onclick="openNav()">&#9776; </a>
-    <h2 style="flex-grow: 0.009;font-size: 40px; align-content: center">DASHBOARD</h2>
+    <h2 style="flex-grow: 0.009;font-size: 40px; align-content: center">OFFSETS OF THE DAY</h2>
       <a href="#"style="font-size: 40px;"><span class="material-symbols-outlined">account_circle</span></a>
   </div>
     <div class="sidebar" id="mySidebar">
@@ -97,15 +97,67 @@
        <div class="special"><a href="{{ url_for('offset') }}" class="border-bottom" ><span class="material-symbols-outlined">potted_plant</span> Any offsets you made this week to save the environment? Enter here...</a></div>
     </div>
 
-    <div class="content">
+  <div class="content">
 
-        <p>offset(anything additional minus points you did today)</p>
-      <br>
-      <br>
+      <h2>Enter your Offsets:</h2>
+      <div class="container">
+          <form action="/upload_offsets" method="post">
+              <label for="walk">Did you walk to office today?</label><br>
+              <select id="walk" name="walk" style="background-color: #B9D6F2" >
+                  <option value="no">no</option>
+                  <option value="yes">yes</option>
+              </select><br><br>
+
+
+              <label for="carpool">Did you carpool today instead of driving alone?</label><br>
+              <select id="carpool" name="carpool" style="background-color: #B9D6F2" >
+                  <option value="no">no</option>
+                  <option value="yes">yes</option>
+              </select><br><br>
+
+              <label for="cycle">Did you cycle today instead of driving a car?</label><br>
+              <select id="cycle" name="cycle" style="background-color: #B9D6F2" >
+                  <option value="no">no</option>
+                  <option value="yes">yes</option>
+              </select><br><br>
+
+
+              <label for="tree">Did you plant a tree today?</label><br>
+              <select id="tree" name="tree" style="background-color: #B9D6F2">
+                  <option value="no">no</option>
+                  <option value="yes">yes</option>
+              </select><br><br>
+
+              <label for="pubtrans">Have you used public transport today?</label><br>
+              <select id="pubtrans" name="pubtrans" style="background-color: #B9D6F2">
+                  <option value="no">no</option>
+                  <option value="yes">yes</option>
+              </select><br><br>
+
+              <label for="recycle">Did you recycle plastic today?</label><br>
+              <select id="recycle" name="recycle" style="background-color: #B9D6F2">
+                  <option value="no">no</option>
+                  <option value="yes">yes</option>
+              </select><br><br>
+
+              <label for="cleanup">Did you participate in a community cleanup drive?</label><br>
+              <select id="cleanup" name="cleanup" style="background-color: #B9D6F2">
+                  <option value="no">no</option>
+                  <option value="yes">yes</option>
+              </select><br><br>
+
+              <button type="submit" style="background-color: #B9D6F2">Upload</button>
+          </form>
+
+      </div>
+
+
+    <br>
+    <br>
 
 
 
-    </div>
+  </div>
 
     <script>
         function openNav() {
