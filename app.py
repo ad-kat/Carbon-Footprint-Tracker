@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from database import load_basicinfo_from_db
+from database import load_basicinfo_from_db, load_activities_from_db
 
 app = Flask(__name__, template_folder="templates")
 
@@ -49,7 +49,8 @@ def offset():
 
 @app.route('/points', methods=['GET'])
 def points():
-  return render_template('points.html')
+  data=load_activities_from_db()
+  return render_template('points.html',activities=data)
 
 
 

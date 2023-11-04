@@ -1,6 +1,6 @@
 from sqlalchemy import create_engine, text
 
-db_string = "mysql+pymysql://3ukz4qcmgyrybc678dx4:pscale_pw_swFdDVjKgtZ12HDGikyk3qNJO8tTEJkknjSyx1i1MnO@aws.connect.psdb.cloud/carbon-footprint?charset=utf8mb4"
+db_string = "mysql+pymysql://3jjeuxgxdnvs3vfx1mms:pscale_pw_i2VtbczYiIHhTS4hMvMhdfaeakMF7RsQESDOqDMqU6L@aws.connect.psdb.cloud/carbon-footprint?charset=utf8mb4"
 engine = create_engine(db_string,
                        connect_args={"ssl": {
                            "ssl_ca": "/etc/ssl/cert.pem"
@@ -32,3 +32,21 @@ def load_users_from_db():
     for row in result.all():
       users.append(list(row))
     return users
+
+
+def load_activities_from_db():
+  with engine.connect() as conn:
+    result = conn.execute(
+        text("select * from daily_activities where user_id=1"))
+
+    data = []
+    for row in result.all():
+      data.append(list(row))
+
+    fdata = []
+    for row in data:
+      newrow = []
+      for item in row:
+        newrow.append(str(item))
+      fdata.append(newrow)
+    return fdata

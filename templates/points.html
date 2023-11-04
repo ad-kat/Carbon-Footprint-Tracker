@@ -73,6 +73,19 @@
           text-align: center;
 
         }
+    table,th{
+      margin-left:auto;
+      margin-right:auto;
+      border:1px solid #90EE90;
+      padding:5px ;
+    }
+    td{
+      margin-left:auto;
+      margin-right:auto;
+      border:1px solid #003559;
+      padding:5px ;
+      color: #003559;
+    }
     </style>
 </head>
 <body>
@@ -92,7 +105,32 @@
 
     <div class="content">
 
-        <p>points(variable plus points)</p>
+        <p>POINTS TILL NOW:</p>
+
+      <table border="1" >
+          
+        <tr bgcolor=#003559>
+          <th> Date of Entry </th>
+          
+          <th> Waste Produced(in terms of bins) </th>
+          <th> kilometers driven </th>
+          <th> Type of Meal eaten </th>
+          <th> Laundry points for today </th>
+          <th> utensils washed today </th>
+        </tr>
+        {% for rec in activities %}
+        <tr bgcolor=#B9D6F2>
+          <td>{{rec[6]}}</td>
+          
+          <td>{{rec[1]}}</td>
+          <td>{{rec[2]}}</td>
+          <td>{{rec[3]}}</td>
+          <td>{{rec[4]}}</td>
+          <td>{{rec[5]}}</td>
+        </tr> 
+        <br>
+        {% endfor %}
+      </table>
       <br>
       <br>
 

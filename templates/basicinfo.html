@@ -73,6 +73,19 @@
           text-align: center;
 
         }
+    table{
+      text-align:left;
+      font-size:20px;
+      margin-left: auto;
+      margin-right: auto;
+      border:1px solid #B9D6F2;
+      
+    }
+    td{
+      padding:20px;
+      margin-bottom:6px;
+      border:1px solid #B9D6F2;
+    }
     </style>
 </head>
 <body>
@@ -91,22 +104,30 @@
     </div>
 
   <div class="content">
+    <br>
+    <br>
 
-      <p>Your BASIC INFO:</p>
-    <br>
-    <br>
+      <p style="font-size:22px; text-decoration-style:bold">Your BASIC INFO:</p>
     
+
+      
     <div>
-      {% for rec in basics %}
-      <div>User Id: {{rec[0]}}</div>
-      <div>Username: {{rec[1]}}</div>
-      <div>Identity: {{rec[2]}}</div>
-      <div>Email Id: {{rec[3]}}</div>
-      <div>Latest Carbon points: {{rec[4]}}</div>
-      <div>Last modified on: {{rec[5]}}</div>
-      <div>Total members in your house: {{rec[6]}}</div>
-      <div>Number of bedrooms in your house: {{rec[7]}}</div>
-      <div>Waste production right now: {{rec[8]}}</div>
+      <table >
+        
+        {% for rec in basics %}
+        <tr><td>User Id:</td><td>{{rec[0]}}</td></tr>
+        <tr><td>Username: </td><td>{{rec[1]}}</td></tr>
+        <tr><td>Identity</td><td>{{rec[2]}}</td></tr>
+        <tr><td>Email Id:</td><td>{{rec[3]}}</td></tr>
+        <tr><td>Latest Carbon points:</td><td>{{rec[4]}}</td></tr>
+        <tr><td>Last modified on:</td><td>{{rec[5]}}</td></tr>
+        <tr><td>Total members in your house:</td><td>{{rec[6]}}</td></tr>
+        <tr><td>Number of bedrooms in your house:</td><td>{{rec[7]}}</td></tr>
+        <tr><td>Waste production right now:</td><td>{{rec[8]}}</td></tr>
+        
+        
+      </table>
+      
       
       <br>
       {% endfor %}
