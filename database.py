@@ -1,9 +1,9 @@
 from sqlalchemy import create_engine, text
 from datetime import datetime
-import os
 
 db_string = "sqlite:///carbon_footprint.db"
 engine = create_engine(db_string)
+
 
 def init_db():
     with engine.connect() as conn:
@@ -58,7 +58,7 @@ def init_db():
                 date TEXT
             )
         """))
-        # Seed a default user so the app doesn't break
+
         existing = conn.execute(text("SELECT * FROM users WHERE user_id=1")).fetchone()
         if not existing:
             conn.execute(text("""
@@ -67,15 +67,15 @@ def init_db():
             """))
             conn.execute(text("""
                 INSERT INTO carbon_footprint (user_id, carbon_emission, measurement_date)
-                VALUES (1, 0.0, '2024-01-01')
+                VALUES (1, 12.4, '2024-01-01')
             """))
             conn.execute(text("""
                 INSERT INTO household_data (user_id, total_members, house_size, waste_production)
-                VALUES (1, 1, 0.0, 0.0)
+                VALUES (1, 2, 3, 1.5)
             """))
         conn.commit()
 
-# Initialize on import
+
 init_db()
 
 
@@ -95,16 +95,10 @@ def load_basicinfo_from_db():
         return finfo
 
 
-def load_users_from_db():
-    with engine.connect() as conn:
-        result = conn.execute(text("SELECT * FROM users"))
-        return [list(row) for row in result.all()]
-
-
 def load_activities_from_db():
     with engine.connect() as conn:
         result = conn.execute(
-            text("SELECT * FROM daily_activities WHERE user_id=1"))
+            text("SELECT * FROM daily_activities WHERE user_id=1 ORDER BY date DESC"))
         fdata = []
         for row in result.all():
             fdata.append([str(item) for item in row])
@@ -114,7 +108,7 @@ def load_activities_from_db():
 def load_offsets_from_db():
     with engine.connect() as conn:
         result = conn.execute(
-            text("SELECT * FROM offsets WHERE user_id=1"))
+            text("SELECT * FROM offsets WHERE user_id=1 ORDER BY date DESC"))
         fdata = []
         for row in result.all():
             fdata.append([str(item) for item in row])
@@ -141,3 +135,35 @@ def upload_today(data):
             VALUES (1, :waste, :kms, :meal, :laundry, :utensils, :date)
         """), {**data, 'date': date})
         conn.commit()
+
+
+def get_carbon_score():
+    with engine.connect() as conn:
+        acts = conn.execute(
+            text("SELECT wastepoints, drivekms, meal, laundry, utensils FROM daily_activities WHERE user_id=1")
+        ).fetchall()
+        offs = conn.execute(
+            text("SELECT walk, carpool, cycle, tree, pubtrans, recycle, cleanup FROM offsets WHERE user_id=1")
+        ).fetchall()
+
+    total = 0.0
+    for a in acts:
+        waste = float(a[0]) if a[0] else 0
+        kms = float(a[1]) if a[1] else 0
+        meal_pts = 3.0 if a[2] == 'non-veg' else 1.0
+        laundry_pts = 1.5 if a[3] == 'yes' else 0
+        utensil_pts = 0.5 if a[4] == 'yes' else 0
+        total += waste * 2 + kms * 0.21 + meal_pts + laundry_pts + utensil_pts
+
+    offset_total = 0.0
+    for o in offs:
+        if o[0] == 'yes': offset_total += 2.0
+        if o[1] == 'yes': offset_total += 3.0
+        if o[2] == 'yes': offset_total += 3.5
+        if o[3] == 'yes': offset_total += 5.0
+        if o[4] == 'yes': offset_total += 2.5
+        if o[5] == 'yes': offset_total += 1.5
+        if o[6] == 'yes': offset_total += 4.0
+
+    net = round(total - offset_total, 2)
+    return max(net, 0.0), round(total, 2), round(offset_total, 2)
